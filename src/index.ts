@@ -1,30 +1,20 @@
 #!/usr/bin/env node
 
 import { Command } from "commander";
+import { addLiquidity } from "./addLiquidity.js";
 
 // Declare the program
 const program = new Command();
 
 // Add actions onto that CLI
 program
-.command("greet")
-  .argument("<string>", "name to mention")
-  .option("-c, --capitalize", "Capitalize the message")
+.command("add-liquidity")
   .action(
-    (
-      name: string,
-      opts: {
-        capitalize?: boolean;
-      },
-    ) => {
-      if (opts.capitalize) {
-				console.log(`HELLO, ${name.toUpperCase()}!`);
-				} else {
-        console.log(`Hello, ${name}!`);
-      }
+    async () => {
+     await addLiquidity()
     },
   )
-  .description("Greets the given name");
+  .description("Add MASS/USDC Liquidity");
 
 // Execute the CLI with the given arguments
 program.parse(process.argv);
